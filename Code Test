@@ -1,6 +1,9 @@
 This is a test to put a code into Github
+
 ```ruby
 require 'redcarpet'
 markdown = Redcarpet.new("Hello World!")
 puts markdown.to_html
 ```
+
+end test
