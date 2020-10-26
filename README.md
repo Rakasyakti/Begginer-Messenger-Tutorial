@@ -20,6 +20,8 @@ Hal-hal seperti memesan produk langsung dari messenger serta membuat sistem FAQ 
 Meskipun terdengar rumit, namun hal ini cukup mudah bahkan jika kalian belum pernah membuat program sebelumnya.
 Panduan ini akan membantu kalian membuat hal tersebut dengan mudah dan dalam waktu yang singkat.
 
+[Tutorial Walkthrough](https://youtu.be/fEByNRYwJCw)
+
 # Sebelum Mulai
 Sebelum mulai menggunakan Messenger untuk toko online kalian, ada beberapa hal yang perlu dipersiapkan dulu seperti:
 - **Halaman Facebook:** Hal ini diperlukan supaya calon pembeli dapat mencari dan melihat toko online milik kalian. 
