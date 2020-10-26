@@ -93,3 +93,122 @@ Jika kalian sudah mencapai tahap ini, maka kalian seharusnya sudah memiliki sebu
 Untuk mencoba Messenger bot kalian, kirim sebuah pesan ke halaman Facebook kalian.
 Jika semua berjalan lancar, kalian akan mendapatkan sebuah balasan dari Messenger bot kalian.
 Coba juga kirim sebuah gambar untuk melihat reaksi dari Messenger bot.
+
+# Merubah Respon dari Messenger Bot
+Messenger bot kalian memang sudah berfungsi, namun respon yang diberikan masih dikatakan hanya dasar saja.
+Saat ini yang bisa dilakukan Messenger bot hanyalah mengulang pesan yang kita kirim dan mengonfirmasi gambar yang kita kirim.
+Kita bisa menambahkan lebih banyak respon dengan menambahkannya di app.js.
+Jika kalian membuka app.js, maka kalian akan menemukan dua funsgi yaitu `function handleMessage` (baris 93) dan `function handlePostback` (baris 136).
+Semua respon Messenger Bot berdasarkan kode yang ditulis di kedua bagian itu.
+
+## Function handleMessage
+Bagian ini berkaitan dengan pesan-pesan yang masuk ke halaman.
+```js
+//bentuk pesan yang diterima
+//pernyataan kedua dan seterusnya menggunakan else if
+if (received_message.text) //pesan berbentuk teks
+  {
+    response = {} //balasan yang diberikan
+  }
+else if (received_message.attachments) //pesan berbentuk lampiran (foto, video, media)
+else if (received_message.text ='Contoh kata') //pesan merupakan kalimat tertentu, disini "Contoh kata" (case-sensitive)
+```
+
+## Function handlePostback
+Bagian ini berkaitan dengan respon yang diberikan dari template (akan dijelaskan nanti)
+```js 
+if (payload === 'nama_payload') //nama payload yang ditentukan dari template
+  {
+    response = {} //balasan yang diberikan
+  }
+```
+
+## Text
+Text merupakan jenis respon paling dasar.
+Seperti namanya, respon text akan memberikan balasan dalam bentuk teks.
+```js
+//kode ini dimasukkan ke bagian response
+"text": "Pesan balasan" //pesan yang akan dikirim sebagai balasan. Jangan lupa tambahkan koma diakhir jika ada lebih dari satu respon
+```
+
+## Template (Attachment)
+Template adalah sebuah bentuk balasan yang terdiri dari judul, subjudul, gambar (jika ada), dan sampai dengan 3 tombol pilihan.
+Contohnya tadi bisa kalian lihat saat mengirim gambar ke Messenger bot.
+```js
+//kode ini dimasukkan ke bagian response
+"attachment": //jenis respon
+  {
+    "type": "template", //jenis attachment
+    "payload": 
+      {
+        "template_type": "generic", //jenis template
+        "elements": 
+          [
+            {
+              "title": "Apakah ini gambar yang benar?", //judul dari template
+              "subtitle": "Tekan tombol untuk menjawab", //subjudul dari template
+              "image_url": <URL gambar>, //link gambar yang mau ditampilkan di template
+              "buttons": //tombol yang bisa dipilih
+                [
+                  {
+                    "type": "postback", //tipe respon (postback digunakan pada handlePostback)
+                    "title": "Iya!", //tulisan yang muncul di tombol
+                    "payload": "iya", //nama payload yang akan digunakan dalam handlePostback
+                  },
+                  {
+                    "type": "postback",
+                    "title": "Tidak!",
+                    "payload": "tidak",
+                  },
+                  {
+                    "type": "postback",
+                    "title": "Mungkin!",
+                    "payload": "mungkin",
+                  }
+                ],
+            }
+          ]
+      }
+  }
+```
+
+## Quick Reply
+Quick reply merupakan pilihan kata yang disarankan.
+Quick reply muncul diatas tempat memasukan pesan.
+Berbeda dengan Template yang hanya bisa memberikan 3 pilihan, quick reply memungkinkan hingga 13 pilihan.
+Meskipun juga memiliki payload, pilihan dari quick reply merupakan teks biasa, sehingga dimasukkan ke bagian function handleMessage
+```js
+//kode ini dimasukkan ke bagian response
+"quick_replies": //jenis respon
+  [
+    {
+      "content_type":"text", //tipe respon
+      "title":"Biru", //tulisan yang muncul di quick reply
+      "payload":"biru_warna",
+    },
+    {
+      "content_type":"text",
+      "title":"Merah",
+      "payload":"merah_warna",
+    }
+  ]
+```
+
+## Membuat pesan menjadi terstruktur
+Kode-kode diatas bisa kalian gunakan untuk membuat pesan terstruktur. 
+Pesan terstruktur maksudnya pesan yang saling berhubungan melalui pilihan dan tombol dari respon.
+Dengan menggunakan `message_received.text = 'Contoh kata'` dan `payload === 'contoh_payload'`, kalian bisa saling menghubungkan pesan dari bot kalian sehingga bisa memberikan pengalaman komunikasi yang lancar.
+
+# Membuat Messenger Bot Kalian Publik
+Sampai saat ini, Facebook App kalian masih dalam tahap development mode. 
+Hanya kalian saja yang bisa mengakses Messenger bot halaman Facebook kalian. 
+Untuk bisa merilis Messenger bot kalian, Facebook App kalian harus di review terlebih dahulu.
+1. Buka bagian App Review pada menu app kalian.
+2. Buka bagian Request untuk mengajukan peninjauan, lalu tekan tombol 'Request Permissions or Features'.
+3. Kalian akan ditunjukan daftar apa saja yang bisa diakses app kalian, dengan advanced Access berarti publik dan Standard Access berarti hanya kalian yang bisa gunakan.
+4. Cari Permission yang memiliki API Calls (biasanya pages_messaging) lalu tekan tombol 'Request Advanced Access'.
+5. Kembali lagi ke bagian Request untuk melihat apa saja yang diperlukan untuk mereview app kalian.
+6. Setelah app kalian diterima, baru kalian bisa menjalankan Messenger bot kalian secara publik di halaman Facebook kalian.
+Jika kalian sudah sampai tahap ini maka kalian sudah selesai membangun sebuah Messenger Bot yang berfungsi.
+Selamat, sekarang pesan dari Messenger akan diurus secara otomatis oleh Messenger Bot kalian, sehingga kalian tidak perlu selalu memgecek inbox kalian.
+
