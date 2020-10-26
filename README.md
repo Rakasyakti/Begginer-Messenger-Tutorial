@@ -209,6 +209,11 @@ Untuk bisa merilis Messenger bot kalian, Facebook App kalian harus di review ter
 4. Cari Permission yang memiliki API Calls (biasanya pages_messaging) lalu tekan tombol 'Request Advanced Access'.
 5. Kembali lagi ke bagian Request untuk melihat apa saja yang diperlukan untuk mereview app kalian.
 6. Setelah app kalian diterima, baru kalian bisa menjalankan Messenger bot kalian secara publik di halaman Facebook kalian.
+
 Jika kalian sudah sampai tahap ini maka kalian sudah selesai membangun sebuah Messenger Bot yang berfungsi.
 Selamat, sekarang pesan dari Messenger akan diurus secara otomatis oleh Messenger Bot kalian, sehingga kalian tidak perlu selalu memgecek inbox kalian.
 
+## Referensi dan Kode Inspirasi
+- https://developers.facebook.com/docs/messenger-platform/send-messages/quick-replies
+- https://developers.facebook.com/docs/messenger-platform/send-messages/templates
+- https://github.com/fbsamples/messenger-platform-samples
