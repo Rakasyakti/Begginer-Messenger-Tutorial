@@ -20,12 +20,14 @@ Hal-hal seperti memesan produk langsung dari messenger serta membuat sistem FAQ 
 Meskipun terdengar rumit, namun hal ini cukup mudah bahkan jika kalian belum pernah membuat program sebelumnya.
 Panduan ini akan membantu kalian membuat hal tersebut dengan mudah dan dalam waktu yang singkat.
 
-# Sebelum mulai
+# Sebelum Mulai
 Sebelum mulai menggunakan Messenger untuk toko online kalian, ada beberapa hal yang perlu dipersiapkan dulu seperti:
 - **Halaman Facebook:** Hal ini diperlukan supaya calon pembeli dapat mencari dan melihat toko online milik kalian. 
   Kalian bisa membuat sebuah halaman Facebook dengan menggunakan [link ini](https://www.facebook.com/pages/create).
 - **Akun Facebook Developer:** Kalian memerlukan sebuah akun Facebook Developer untuk membuat aplikasi yang berintegrasi ke Facebook.
   Kalian bisa membuat akun Facebook Developer di website [Facebook Developer](https://developers.facebook.com/).
+  -**Facebook App:** aplikasi ini adalah tempat kode kalian akan berinteraksi dengan Facebook nantinya. 
+  Kalian bisa membuat aplikasi baru dengan menekan tombol 'Create App' di [halaman ini](https://developers.facebook.com/apps/).
 - **Akun Heroku:** Heroku adalah sebuah cloud platform atau tempat penyimpanan yang dapat menjalankan kode program, sehingga kita tidak perlu repot membuat server sendiri.
   Kalian bisa membuat akun heroku di website [Heroku](https://www.heroku.com/).
   
@@ -42,8 +44,52 @@ semua program ini bersifat gratis jadi kalian tidak perlu mengeluarkan uang.
   - *[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli):* Diperlukan untuk mengirim kode ke server Heroku.
 
 Setelah selesai mendownload kedua aplikasi tersebut, bukalah Command Prompt lalu tulis perintah ini.
-Kode kalian nanti akan berada di C:\Users\(Username)\beginner-messenger-tutorial
+Kode kalian nanti akan berada di C:\Users\Username\beginner-messenger-tutorial
 ```
 git clone https://github.com/Rakasyakti/Beginner-Messenger-Tutorial
+cd beginner-messenger-tutorial
+```
+Saat kalian sudah selesai nanti, kalian bisa mengirim kode kalian ke heroku dengan memasukan perintah ini.
+```
+git init
+heroku apps:create
+git add .
+git commit -m "My first commit"
+git push heroku master
 ```
 
+## Mengubah VERIFY_CODE kalian
+Verify code adalah sebuah sandi yang digunakan untuk memverifikasi antara server kode dan server Facebook.
+Verify code kalian bisa merupakan kombinasi apapun, sama seperti saat kalian membuat password.
+Untuk mengubah verify code kalian, buka apps.js lalu ganti `<VERIFY_CODE_KALIAN>` dengan sandi yang kalian inginkan.
+`<VERIFY_CODE_KALIAN>` seharusnya berada di baris 69 dan berada diantara tanda kutip, jangan hapus tanda kutipnya.
+
+# Mempersiapkan App dan Variable
+Setelah menyelesaikan tahap diatas, kalian bisa mulai mengatur app yang ada di Facebook Developer dan Heroku.
+
+## Mendapatkan PAGE_ACCESS_TOKEN
+PAGE_ACCESS_TOKEN adalah sebuah kode yang digunakan untuk mengizinkan kode di Heroku bekerja di app Facebook.
+1. Buka dashboard app kalian, cari Messenger pada Add Product, lalu tekan tombol 'set up' pada Messenger.
+2. Di pengaturan Messenger, cari bagian Access Token lalu tekan 'Add or Remove Pages'.
+3. Pilih halaman Facebook kalian.
+4. tekan tombol 'Generate Token' disamping halaman kalian, lalu simpan kode yang kalian dapat (kode ini akan digunakan nanti, jadi simpan di catatan dulu).
+
+## Menyimpan PAGE_ACCESS_TOKEN
+Kode PAGE_ACCESS_TOKEN yang kalian dapatkan tadi akan disimpan ke Heroku.
+1. Buka bagian Settings pada app kalian.
+2. Cari bagian Config Vars, lalu tekan tombol 'Reveal Config Vars'.
+3. Tulis `PAGE_ACCESS_TOKEN` pada bagian KEY.
+4. Masukkan kode PAGE_ACCESS_TOKEN yang kalian dapatkan tadi, lalu tekan tombol 'Add' disamping.
+
+## Mengatur Webhook
+Setelah menyelesaikan tahap diatas, kalian tinggal perlu mengatur Webhook antara Heroku dan Facebook.
+1. Salin link app Heroku kalian dengan menekan tombol 'Open app' di dashboard lalu menyalin link yang ada (contoh: https://secret-inlet-48207.herokuapp.com/)
+2. Kembali ke Facebook Developer, cari bagian Webhooks pada pengaturan Messenger (Tempat kalian dapat PAGE_ACCESS_TOKEN tadi).
+3. Tekan tombol 'Add Callback URL' lalu masukan link yang kalian salin tadi ditambah /webhook dibelakangnya (contoh: https://limitless-atoll-69141.herokuapp.com/webhook).
+4. Masukkan juga verify token yang kalian buat tadi, lalu tekan verify.
+
+## Ujicoba Messenger
+Jika kalian sudah mencapai tahap ini, maka kalian seharusnya sudah memiliki sebuah Messenger bot yang berfungsi.
+Untuk mencoba Messenger bot kalian, kirim sebuah pesan ke halaman Facebook kalian.
+Jika semua berjalan lancar, kalian akan mendapatkan sebuah balasan dari Messenger bot kalian.
+Coba juga kirim sebuah gambar untuk melihat reaksi dari Messenger bot.
