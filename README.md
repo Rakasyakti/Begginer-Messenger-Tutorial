@@ -28,7 +28,22 @@ Sebelum mulai menggunakan Messenger untuk toko online kalian, ada beberapa hal y
   Kalian bisa membuat akun Facebook Developer di website [Facebook Developer](https://developers.facebook.com/).
 - **Akun Heroku:** Heroku adalah sebuah cloud platform atau tempat penyimpanan yang dapat menjalankan kode program, sehingga kita tidak perlu repot membuat server sendiri.
   Kalian bisa membuat akun heroku di website [Heroku](https://www.heroku.com/).
-- **Download aplikasi yang diperlukan:** Kalian juga akan memerlukan beberapa program yang perlu diinstal di komputer kalian.
-  semua program ini bersifat gratis jadi kalian tidak perlu mengeluarkan uang.
+  
+## Mengedit secara online
+Jika kalian ingin mengerjakan kode kalian secara online melalui Github, kalian bisa menyalin repository ini melalui tombol 'Use this template'.
+Setelah selesai nanti, kalian bisa mengirim kode kalian dari Github ke Heroku dengan menghubungkan repository ke app kalian.
+Caranya dengan membuka Deployment method pada bagian Deploy di app Heroku.
+
+## Mengedit secara offline
+Jika kalian ingin mengerjakan kode kalian secara offline menggunakan text editor, kalian akan memerlukan Command Prompt.
+Kalian juga akan memerlukan beberapa program yang perlu diinstal di komputer kalian.
+semua program ini bersifat gratis jadi kalian tidak perlu mengeluarkan uang.
   - *[Git](https://git-scm.com/downloads):* Diperlukan untuk mendownload dan mengupload file dari Github.
   - *[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli):* Diperlukan untuk mengirim kode ke server Heroku.
+
+Setelah selesai mendownload kedua aplikasi tersebut, bukalah Command Prompt lalu tulis perintah ini.
+Kode kalian nanti akan berada di C:\Users\(Username)\beginner-messenger-tutorial
+```
+git clone https://github.com/Rakasyakti/Beginner-Messenger-Tutorial
+```
+
